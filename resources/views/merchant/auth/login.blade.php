@@ -71,17 +71,21 @@
           <h4 class="mb-2">Welcome to Sneat! 👋</h4>
           <p class="mb-4">Please sign-in to your account and start the adventure</p>
 
-          <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+          <form id="formAuthentication" class="mb-3" action="{{ route('merchant.login') }}" method="POST">
+            @csrf
             <div class="mb-3">
               <label for="email" class="form-label">Email or Username</label>
               <input
                 type="text"
                 class="form-control"
                 id="email"
-                name="email-username"
+                name="email"
                 placeholder="Enter your email or username"
                 autofocus
               />
+              @error('email')
+              <span class="text-danger">{{ $message }}</span>                
+            @enderror
             </div>
             <div class="mb-3 form-password-toggle">
               <div class="d-flex justify-content-between">
@@ -101,10 +105,13 @@
                 />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
+              @error('password')
+                <span class="text-danger">{{ $message }}</span>                
+              @enderror
             </div>
             <div class="mb-3">
               <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="remember-me" />
+                <input class="form-check-input" type="checkbox" id="remember-me" name="remember" />
                 <label class="form-check-label" for="remember-me"> Remember Me </label>
               </div>
             </div>

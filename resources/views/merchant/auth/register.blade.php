@@ -71,22 +71,27 @@
           <h4 class="mb-2">Adventure starts here 🚀</h4>
           <p class="mb-4">Make your app management easy and fun!</p>
 
-          <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+          <form id="formAuthentication" class="mb-3" action="{{ route('merchant.register') }}" method="POST">
+            @csrf
             <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
+              <label for="username" class="form-label">Name</label>
               <input
                 type="text"
                 class="form-control"
                 id="username"
-                name="username"
+                name="name"
                 placeholder="Enter your username"
                 autofocus
               />
             </div>
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+
             <div class="mb-3">
               <label for="email" class="form-label">Email</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
             </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+
             <div class="mb-3 form-password-toggle">
               <label class="form-label" for="password">Password</label>
               <div class="input-group input-group-merge">
@@ -100,6 +105,8 @@
                 />
                 <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
               </div>
+              <x-input-error :messages="$errors->get('password')" class="mt-2" />
+
             </div>
 
             <div class="mb-3">
