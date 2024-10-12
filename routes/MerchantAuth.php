@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MerchantAuth\AuthenticatedSessionController;
+use App\Http\Controllers\MerchantAuth\EmailVerificationPromptController;
 use App\Http\Controllers\MerchantAuth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,8 +19,8 @@ Route::middleware('guest:merchant')->group(function () {
 });
 
 Route::middleware('merchant')->group(function () {
-    // Route::get('verify-email', EmailVerificationPromptController::class)
-    //             ->name('verification.notice');
+    Route::get('verify-email', EmailVerificationPromptController::class)
+                ->name('verification.notice');
 
     // Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
     //             ->middleware(['signed', 'throttle:6,1'])

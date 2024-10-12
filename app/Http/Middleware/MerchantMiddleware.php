@@ -18,7 +18,7 @@ class MerchantMiddleware
     {
         if (Auth::guard('merchant')->check()) {
             return $next($request);
-            # code...
+            
         }
         return to_route('merchant.login');
     }
